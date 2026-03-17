@@ -1,4 +1,5 @@
 {
+	"module": "es2022",
 	"extends": "astro/tsconfigs/strict",
 	"include": [".astro/types.d.ts", "**/*"],
 	"exclude": ["dist"],

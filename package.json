@@ -12,28 +12,46 @@
 		"publish": true
 	},
 	"dependencies": {
-		"@astrojs/cloudflare": "12.6.12",
-		"@astrojs/mdx": "4.3.13",
-		"@astrojs/rss": "4.0.14",
-		"@astrojs/sitemap": "3.6.1",
-		"astro": "5.16.9",
+		"@astrojs/cloudflare": "^12.5.4",
+		"@astrojs/mdx": "^4.3.0",
+		"@astrojs/rss": "4.0.17",
+		"@astrojs/sitemap": "3.7.1",
+		"@astrojs/tailwind": "^6.0.2",
+		"astro": "^5.11.1",
+		"dotenv": "^17.3.1",
+		"drizzle-orm": "^0.45.1",
+		"jose": "^6.2.1",
+		"tailwindcss": "^3.4.19",
 		"typescript": "5.9.3"
 	},
 	"devDependencies": {
-		"wrangler": "4.56.0"
+		"@astrojs/svelte": "^7.1.0",
+		"@cloudflare/workers-types": "^4.20250610.0",
+		"@internationalized/date": "^3.8.2",
+		"@lucide/svelte": "^0.577.0",
+		"@types/form-data": "^2.5.2",
+		"@types/jsonwebtoken": "^9.0.9",
+		"bits-ui": "2.16.3",
+		"chokidar-cli": "^3.0.0",
+		"clsx": "^2.1.1",
+		"tailwind-merge": "^3.3.1",
+		"wrangler": "4"
 	},
 	"engines": {
 		"node": ">=22"
 	},
 	"private": true,
 	"scripts": {
+		"build": "ENV=pprd astro build",
+		"preview": "ENV=pprd astro build && wrangler dev -e dev --live-reload --local --persist-to worker-local",
 		"astro": "astro",
-		"build": "astro build",
+		"deploy": "ENV=prod astro build && wrangler deploy --env=\"\"",
 		"cf-typegen": "wrangler types",
-		"check": "astro build && tsc && wrangler deploy --dry-run",
-		"deploy": "wrangler deploy",
-		"dev": "astro dev",
-		"preview": "astro build && wrangler dev"
+		"watch": "wrangler tail ivys",
+		"test:build": "chokidar \"src/**/*.{astro,ts,svelte,css}\" -c \"ENV=pprd astro build\"",
+		"watch:build": "ENV=pprd astro build",
+		"dev:wrangler": "wrangler dev --live-reload --local --persist-to worker-local",
+		"dev": "wrangler dev --live-reload --local --persist-to worker-local --ip 0.0.0.0"
 	},
 	"type": "module"
 }

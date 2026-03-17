@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  @font-face {
+    font-family: 'Beth Ellen';
+    src: url('/fonts/BethEllen-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Caudex';
+    src: url('/fonts/Caudex-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  /* PARALAX EFFECTS */
+
+  /* CUSTOM EFFECTS */
+  .gingham {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: hsl(var(--background));
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        rgba(184, 199, 111, 0.5) 0px 16px,
+        transparent 16px 32px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        rgba(184, 199, 111, 0.5) 0px 16px,
+        transparent 16px 32px
+      );
+    z-index: -1;
+  }
+  /* Use when the pattern should live inside its container, not fixed to the viewport */
+  .gingham-inline {
+    position: static;
+    width: auto;
+    height: auto;
+    z-index: auto;
+    background-attachment: scroll;
+  }
+  @keyframes pop {
+    0% {
+      transform: scale(1);
+    }
+    40% {
+      transform: scale(1.15);
+    }
+    60% {
+      transform: scale(0.9);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .animate-pop {
+    animation: pop 0.3s ease-in-out; }
+
+  /* OVERRIDES / DEFAULT STYLES  */
+
+  body.modal-open {
+    overflow:hidden;
+  }
+
+  input {
+    background: hsl(var(--card));
+  }
+  button {
+    background: hsl(var(--card));
+  }
+
+  body {
+    margin: 0;
+    background-color: rgb(254, 253, 246);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Beth Ellen', sans-serif;
+  }
+
+  p {
+    font-family: 'Caudex', sans-serif;
+  }
+
+  .caudex {
+    font-family: 'Caudex', sans-serif;
+  }
+  .bethellen {
+    font-family: 'Beth Ellen', sans-serif;
+  }
+}
+
+@layer base {
+  :root {
+    /* --background: 53 80% 98%; */
+    --background: 46 74% 95%;
+    /* --text-accent: 53 80% 96%; */
+    --text-accent: 46 74% 95%;
+    --foreground: 222.2 84% 4.9%;
+ 
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 10.3% 70%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+ 
+    --card: 60 100% 99%;
+    --card-foreground: 222.2 84% 4.9%;
+ 
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+ 
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+ 
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+ 
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+ 
+    --destructive: 0 72.2% 50.6%;
+    --destructive-foreground: 210 40% 98%;
+ 
+    --ring: 222.2 84% 4.9%;
+ 
+    --radius: 0.5rem;
+  }
+}
+
+section {
+  width: 100%;
+}
+
+nav.scroll-animated {
+  /* Add this when using any animation as default position. */
+  /* initial state */
+  top: 0;
+  transition: top 0.25s ease-out;
+}
+nav.swipe-on-scroll {
+  /* Requires javascript to add class to header on scroll */
+  top: -50px;
+}
+
+@layer base {
+  /* * {
+    @apply border-border;
+  } */
+  /* body {
+    @apply bg-background text-foreground;
+  } */
+}

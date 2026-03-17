@@ -10,5 +10,33 @@
 	"observability": {
 		"enabled": true
 	},
-	"upload_source_maps": true
+	"upload_source_maps": true,
+	"vars": {
+		"OAUTH_CLIENT_ID": "356031833702-7ggmg5b7m57h9n0knaopql5mmand89gr.apps.googleusercontent.com",
+		"SITE_URL": "https://micboard.jacksonhorton.workers.dev",
+		"ALLOW_HTTP_LOGINS": "false"
+	},
+	"env": {
+		"dev": {
+			"vars": {
+				"OAUTH_CLIENT_ID": "356031833702-7ggmg5b7m57h9n0knaopql5mmand89gr.apps.googleusercontent.com",
+				"SITE_URL": "http://localhost:8787",
+				"ALLOW_HTTP_LOGINS": "true"
+			},
+			"d1_databases": [
+				{
+					"binding": "DB",
+					"database_name": "micboard",
+					"database_id": "cd2ad708-e9c5-4eb7-a1c1-de89bf01fa77"
+				}
+			]
+		}
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "micboard",
+			"database_id": "cd2ad708-e9c5-4eb7-a1c1-de89bf01fa77"
+		}
+	]
 }

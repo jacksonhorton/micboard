@@ -1,0 +1,48 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const auth = Astro.locals.auth;
+const displayName = auth?.name ?? "User";
+const displayEmail = auth?.email ?? "No email found";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Dashboard" description="Account dashboard" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Dashboard</h1>
+			<section class="card">
+				<p><strong>Name:</strong> {displayName}</p>
+				<p><strong>Email:</strong> {displayEmail}</p>
+				<form method="post" action="/api/auth/logout?returnTo=/auth">
+					<button type="submit">Logout</button>
+				</form>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.card {
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 12px;
+		padding: 1.25rem;
+		background: #fff;
+		box-shadow: var(--box-shadow);
+	}
+
+	button {
+		margin-top: 0.5rem;
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 8px;
+		padding: 0.55rem 0.85rem;
+		cursor: pointer;
+	}
+</style>
