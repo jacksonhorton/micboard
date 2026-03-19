@@ -3,19 +3,6 @@
 @tailwind utilities;
 
 @layer utilities {
-  @font-face {
-    font-family: 'Beth Ellen';
-    src: url('/fonts/BethEllen-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Caudex';
-    src: url('/fonts/Caudex-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-  }
 
   /* PARALAX EFFECTS */
 
@@ -139,6 +126,15 @@
     --ring: 222.2 84% 4.9%;
  
     --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 

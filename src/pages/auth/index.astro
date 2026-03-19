@@ -1,0 +1,72 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+if (Astro.locals.auth?.userId) {
+	return Astro.redirect("/dashboard");
+}
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Sign In" description="Sign in with Google" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="auth-card">
+				<h1>Sign in</h1>
+				<p>Use your Google account to continue.</p>
+				<a class="google-btn" href="/api/auth/google/start">
+					<svg
+						width="18"
+						height="18"
+						viewBox="0 0 24 24"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						aria-hidden="true"
+					>
+						<path d="M23.766 12.276c0-.917-.074-1.591-.234-2.289H12.24v4.451h6.627c-.134 1.106-.857 2.772-2.465 3.89l-.022.149 3.66 2.835.253.025c2.323-2.144 3.473-5.3 3.473-9.06Z" fill="#4285F4"></path>
+						<path d="M12.24 24c3.24 0 5.956-1.065 7.941-2.903l-3.891-3.01c-1.04.723-2.428 1.228-4.05 1.228-3.167 0-5.858-2.095-6.824-4.995l-.14.012-3.806 2.945-.048.134A11.997 11.997 0 0 0 12.24 24Z" fill="#34A853"></path>
+						<path d="M5.416 14.32a7.27 7.27 0 0 1-.401-2.32c0-.807.146-1.59.388-2.32l-.007-.156-3.852-2.993-.126.06A12 12 0 0 0 0 12c0 1.934.46 3.765 1.273 5.411l4.143-3.09Z" fill="#FBBC05"></path>
+						<path d="M12.24 4.686c2.05 0 3.436.88 4.222 1.617l3.082-3.007C18.183 2.03 15.48 0 12.24 0A11.997 11.997 0 0 0 1.418 6.589l3.985 3.09c.98-2.9 3.67-4.994 6.837-4.994Z" fill="#EB4335"></path>
+					</svg>
+					<span>Sign in with Google</span>
+				</a>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.auth-card {
+		max-width: 420px;
+		margin: 3rem auto;
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 12px;
+		padding: 1.5rem;
+		background: #fff;
+		box-shadow: var(--box-shadow);
+	}
+
+	.google-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.6rem;
+		margin-top: 0.75rem;
+		padding: 0.6rem 1rem;
+		border-radius: 8px;
+		border: 1px solid #d0d7de;
+		text-decoration: none;
+		color: #1f2328;
+		background: #fff;
+		font-weight: 700;
+	}
+
+	.google-btn:hover {
+		color: rgb(var(--black));
+	}
+</style>

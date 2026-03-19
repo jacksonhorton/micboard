@@ -1,0 +1,95 @@
+---
+import BaseHead from "$lib/components/BaseHead.astro";
+import Footer from "$lib/components/Footer.astro";
+import AppSidebar from "$lib/components/AppSidebar.svelte";
+
+type SidebarProject = {
+	id: string;
+	name: string;
+};
+
+interface Props {
+	title?: string;
+	description?: string;
+	projects?: SidebarProject[];
+	defaultProjectId?: string;
+}
+
+const {
+	title = "Dashboard",
+	description = "Dashboard",
+	projects,
+	defaultProjectId,
+}: Props = Astro.props;
+const userName = Astro.locals.auth?.name ?? "User";
+
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+		<script is:inline>
+			(() => {
+				const key = "dashboard-theme";
+				const root = document.documentElement;
+				const stored = localStorage.getItem(key);
+				root.classList.toggle("dashboard-dark", stored === "dark");
+			})();
+		</script>
+	</head>
+
+	<body>
+		<div class="dashboard-shell">
+			<AppSidebar userName={userName} {projects} {defaultProjectId} client:load />
+			<main>
+				<slot />
+			</main>
+		</div>
+	</body>
+</html>
+
+<style>
+	.dashboard-shell {
+		display: flex;
+		min-height: 70vh;
+		align-items: stretch;
+	}
+
+	.dashboard-shell :global([data-slot="sidebar-wrapper"]) {
+		flex: 0 0 auto;
+		width: auto;
+	}
+
+	.dashboard-shell > main {
+		flex: 1 1 auto;
+		width: auto;
+		max-width: none;
+		margin: 0;
+		padding: 2rem;
+		background: hsl(var(--background));
+		color: hsl(var(--foreground));
+	}
+
+	:global(html.dashboard-dark) {
+		--background: 222.2 47.4% 9.2%;
+		--foreground: 210 40% 98%;
+		--card: 222.2 47.4% 11.2%;
+		--card-foreground: 210 40% 98%;
+		--popover: 222.2 47.4% 11.2%;
+		--popover-foreground: 210 40% 98%;
+		--muted: 217.2 32.6% 17.5%;
+		--muted-foreground: 215 20.2% 65.1%;
+		--border: 217.2 32.6% 17.5%;
+		--input: 217.2 32.6% 17.5%;
+		--accent: 217.2 32.6% 17.5%;
+		--accent-foreground: 210 40% 98%;
+		--sidebar-background: 224 34% 10%;
+		--sidebar-foreground: 210 40% 96%;
+		--sidebar-primary: 210 40% 98%;
+		--sidebar-primary-foreground: 224 34% 10%;
+		--sidebar-accent: 217.2 32.6% 17.5%;
+		--sidebar-accent-foreground: 210 40% 98%;
+		--sidebar-border: 217.2 32.6% 17.5%;
+		--sidebar-ring: 212.7 26.8% 83.9%;
+	}
+</style>
