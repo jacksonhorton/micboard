@@ -22,8 +22,8 @@ interface GoogleUserInfo {
 	picture?: string;
 }
 
-function getSiteUrl(locals: App.Locals, request: Request): string {
-	return getServerEnv(locals, "SITE_URL") ?? getServerEnv(locals, "PUBLIC_SITE_URL") ?? new URL(request.url).origin;
+function getSiteUrl(_locals: App.Locals, request: Request): string {
+	return new URL(request.url).origin;
 }
 
 function getAuthConfig(locals: App.Locals, request: Request) {

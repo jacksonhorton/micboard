@@ -4,8 +4,8 @@ import { getServerEnv } from "../../../../lib/server-env";
 const STATE_COOKIE_NAME = "google_oauth_state";
 const STATE_COOKIE_MAX_AGE = 60 * 10;
 
-function getSiteUrl(locals: App.Locals, request: Request): string {
-	return getServerEnv(locals, "SITE_URL") ?? getServerEnv(locals, "PUBLIC_SITE_URL") ?? new URL(request.url).origin;
+function getSiteUrl(_locals: App.Locals, request: Request): string {
+	return new URL(request.url).origin;
 }
 
 export const GET: APIRoute = async ({ cookies, locals, request }) => {

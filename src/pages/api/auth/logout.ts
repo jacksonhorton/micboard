@@ -4,8 +4,8 @@ import { getServerEnv } from "../../../lib/server-env";
 const SESSION_COOKIE_NAME = "token";
 const OAUTH_STATE_COOKIE_NAME = "google_oauth_state";
 
-function getSiteUrl(locals: App.Locals, request: Request): string {
-	return getServerEnv(locals, "SITE_URL") ?? getServerEnv(locals, "PUBLIC_SITE_URL") ?? new URL(request.url).origin;
+function getSiteUrl(_locals: App.Locals, request: Request): string {
+	return new URL(request.url).origin;
 }
 
 function getRedirectTarget(url: URL): string {
