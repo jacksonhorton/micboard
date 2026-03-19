@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import FormDialog, { type FormDialogField } from "$lib/components/FormDialog.svelte";
+	import FormDialog, { type FormDialogField } from "./FormDialog.svelte";
 	import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 	import CalendarIcon from "@lucide/svelte/icons/calendar";
