@@ -40,7 +40,12 @@ const userName = Astro.locals.auth?.name ?? "User";
 
 	<body>
 		<div class="dashboard-shell">
-			<AppSidebar userName={userName} {projects} {defaultProjectId} client:load />
+			<AppSidebar
+				userName={userName}
+				{projects}
+				{defaultProjectId}
+				client:load
+			/>
 			<main>
 				<slot />
 			</main>

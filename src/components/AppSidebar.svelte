@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
+	import FormDialog, { type FormDialogField } from "$lib/components/FormDialog.svelte";
 	import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 	import CalendarIcon from "@lucide/svelte/icons/calendar";
@@ -58,9 +59,36 @@
 
 	const logoutUrl = "/api/auth/logout?returnTo=/auth";
 	const logoutFormId = "sidebar-logout-form";
-	const newProjectUrl = "#";
-	const newProjectFormId = "sidebar-new-project-form";
+	const newProjectUrl = "/api/projects";
 	const dashboardThemeKey = "dashboard-theme";
+	let showNewProjectDialog = $state(false);
+
+	const newProjectFields: FormDialogField[] = [
+		{
+			id: "project_name",
+			name: "Project Name",
+			type: "text",
+			placeholder: "My Project",
+			required: true,
+			autocomplete: "off",
+		},
+		{
+			id: "project_description",
+			name: "Project Description",
+			type: "textarea",
+			placeholder: "Short description",
+		},
+		// {
+		// 	id: "project_visibility",
+		// 	name: "Visibility",
+		// 	type: "select",
+		// 	value: "private",
+		// 	options: [
+		// 		{ value: "private", label: "Private" },
+		// 		{ value: "public", label: "Public" },
+		// 	],
+		// },
+	];
 
 	let isDarkMode = $state(false);
 
@@ -145,14 +173,9 @@
 								</DropdownMenu.Item>
 							{/each}
 							<DropdownMenu.Separator />
-							<form id={newProjectFormId} method="post" action={newProjectUrl}></form>
-							<DropdownMenu.Item>
-								{#snippet child({ props })}
-									<button type="submit" form={newProjectFormId} {...props}>
-										<PlusIcon class="inline size-4 align-middle w-full" />
-										New Project
-									</button>
-								{/snippet}
+							<DropdownMenu.Item onSelect={() => (showNewProjectDialog = true)}>
+								<PlusIcon class="inline size-4 align-middle" />
+								New Project
 							</DropdownMenu.Item>
 						</DropdownMenu.Content>
 					</DropdownMenu.Root>
@@ -228,4 +251,15 @@
 			</Sidebar.Menu>
 		</Sidebar.Footer>
 	</Sidebar.Root>
+
+	<FormDialog
+		bind:open={showNewProjectDialog}
+		showTrigger={false}
+		title="Create New Project"
+		description="Add a project to your workspace."
+		action={newProjectUrl}
+		fields={newProjectFields}
+		cancelTitle="Cancel"
+		submitTitle="Create Project"
+	/>
 </Sidebar.Provider>
