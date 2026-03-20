@@ -22,6 +22,7 @@ const {
 	defaultProjectId,
 }: Props = Astro.props;
 const userName = Astro.locals.auth?.name ?? "User";
+const email = Astro.locals.auth?.email ?? "Email";
 
 ---
 
@@ -42,6 +43,7 @@ const userName = Astro.locals.auth?.name ?? "User";
 		<div class="dashboard-shell">
 			<AppSidebar
 				userName={userName}
+				email={email}
 				{projects}
 				{defaultProjectId}
 				client:load
@@ -76,25 +78,30 @@ const userName = Astro.locals.auth?.name ?? "User";
 	}
 
 	:global(html.dashboard-dark) {
-		--background: 222.2 47.4% 9.2%;
-		--foreground: 210 40% 98%;
-		--card: 222.2 47.4% 11.2%;
-		--card-foreground: 210 40% 98%;
-		--popover: 222.2 47.4% 11.2%;
-		--popover-foreground: 210 40% 98%;
-		--muted: 217.2 32.6% 17.5%;
-		--muted-foreground: 215 20.2% 65.1%;
-		--border: 217.2 32.6% 17.5%;
-		--input: 217.2 32.6% 17.5%;
-		--accent: 217.2 32.6% 17.5%;
-		--accent-foreground: 210 40% 98%;
-		--sidebar-background: 224 34% 10%;
-		--sidebar-foreground: 210 40% 96%;
-		--sidebar-primary: 210 40% 98%;
-		--sidebar-primary-foreground: 224 34% 10%;
-		--sidebar-accent: 217.2 32.6% 17.5%;
-		--sidebar-accent-foreground: 210 40% 98%;
-		--sidebar-border: 217.2 32.6% 17.5%;
-		--sidebar-ring: 212.7 26.8% 83.9%;
+		--background: 96 10% 11%;
+		--foreground: 90 18% 92%;
+		--card: 95 9% 15%;
+		--card-foreground: 90 18% 92%;
+		--popover: 95 9% 15%;
+		--popover-foreground: 90 18% 92%;
+		--muted: 95 8% 19%;
+		--muted-foreground: 95 8% 68%;
+		--border: 95 8% 24%;
+		--input: 95 8% 24%;
+		--accent: 95 9% 24%;
+		--accent-foreground: 90 18% 92%;
+		--primary: 91 23% 64%;
+		--primary-foreground: 96 14% 12%;
+		--secondary: 80 3% 62%;
+		--secondary-foreground: 96 14% 12%;
+		--ring: 91 23% 64%;
+		--sidebar-background: 95 12% 13%;
+		--sidebar-foreground: 90 18% 92%;
+		--sidebar-primary: 91 23% 64%;
+		--sidebar-primary-foreground: 96 14% 12%;
+		--sidebar-accent: 95 9% 22%;
+		--sidebar-accent-foreground: 90 18% 92%;
+		--sidebar-border: 95 8% 24%;
+		--sidebar-ring: 91 23% 64%;
 	}
 </style>

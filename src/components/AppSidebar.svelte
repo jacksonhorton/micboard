@@ -22,6 +22,7 @@
 
 	type AppSidebarProps = {
 		userName?: string;
+		email?: string;
 		projects?: Project[];
 		defaultProjectId?: string;
 	};
@@ -34,6 +35,7 @@
 
 	let {
 		userName = "User",
+		email = "Email",
 		projects = fallbackProjects,
 		defaultProjectId = "",
 	}: AppSidebarProps = $props();
@@ -227,7 +229,8 @@
 							class="w-[var(--bits-dropdown-menu-anchor-width)] min-w-48"
 						>
 							<p class="px-2 py-1.5 text-sm font-semibold">Profile</p>
-							<p class="px-2 py-1.5 text-sm text-muted-foreground">{userName}</p>
+							<p class="px-2 text-sm text-muted-foreground">{userName}</p>
+							<p class="px-2 text-sm text-muted-foreground">{email}</p>
 							<DropdownMenu.Separator />
 							<DropdownMenu.Item onSelect={toggleDarkMode}>
 								{#if isDarkMode}
