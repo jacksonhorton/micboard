@@ -5,6 +5,8 @@ import { integer, sqliteTable, text, primaryKey } from "drizzle-orm/sqlite-core"
 
 export type Users = typeof users.$inferSelect;
 export type UserIdentities = typeof userIdentities.$inferSelect;
+export type Projects = typeof projects.$inferSelect;
+export type PcoCredentials = typeof pcoCredentials.$inferSelect;
 
 export const users = sqliteTable("users", {
     id: text("id").primaryKey(),
@@ -24,6 +26,25 @@ export const userIdentities = sqliteTable("user_identities", {
 }, (table) => [
     primaryKey({ columns: [table.provider, table.providerUserId] }),
 ]);
+
+export const projects = sqliteTable("projects", {
+    id: text("id").primaryKey(),
+    name: text("name").notNull(),
+    description: text("description"),
+    userId: text("user_id").references(() => users.id).notNull(),
+    pcoCredentialsId: text("pco_credentials_id").references(() => pcoCredentials.id).notNull(),
+    createdAt: integer("created_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
+    updatedAt: integer("updated_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
+    deletedAt: integer("deleted_at", { mode: "timestamp" }),
+});
+
+export const pcoCredentials = sqliteTable("user_pco_credentials", {
+    id: text("id").primaryKey(),
+    userId: text("user_id").references(() => users.id).notNull(),
+    createdAt: integer("created_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
+    updatedAt: integer("updated_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
+    deletedAt: integer("deleted_at", { mode: "timestamp" }),
+})
 
 
 // export type User = typeof users.$inferSelect;
